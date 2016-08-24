@@ -55,7 +55,7 @@ module.exports = {
     }
   },
 
-  globals: ["pd"],
+  globals: {"pd": true},
 
   rules: {
     // http://eslint.org/docs/rules/
