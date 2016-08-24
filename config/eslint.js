@@ -55,6 +55,8 @@ module.exports = {
     }
   },
 
+  globals: ["pd"],
+
   rules: {
     // http://eslint.org/docs/rules/
     'array-callback-return': 'warn',
