@@ -79,6 +79,7 @@ module.exports = {
       'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
       'react-native': 'react-native-web'
     }
+    root: [paths.appSrc],
   },
   // Resolve loaders (webpack plugins for CSS, images, transpilation) from the
   // directory of `react-scripts` itself rather than the project directory.
