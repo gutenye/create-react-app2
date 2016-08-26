@@ -144,7 +144,7 @@ module.exports = {
     }],
     'no-with': 'warn',
     'no-whitespace-before-property': 'warn',
-    'operator-assignment': ['warn', 'always'],
+    'operator-assignment': ['off', 'always'],
     radix: 'warn',
     'require-yield': 'warn',
     'rest-spread-spacing': ['warn', 'never'],

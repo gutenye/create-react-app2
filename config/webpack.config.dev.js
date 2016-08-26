@@ -24,7 +24,7 @@ module.exports = {
   // We don't use source maps here because they can be confusing:
   // https://github.com/facebookincubator/create-react-app/issues/343#issuecomment-237241875
   // You may want 'cheap-module-source-map' instead if you prefer source maps.
-  devtool: 'eval',
+  devtool: 'cheap-module-source-map',
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
@@ -78,7 +78,7 @@ module.exports = {
       // See https://github.com/facebookincubator/create-react-app/issues/255
       'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
       'react-native': 'react-native-web'
-    }
+    },
     root: [paths.appSrc],
   },
   // Resolve loaders (webpack plugins for CSS, images, transpilation) from the
