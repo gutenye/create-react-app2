@@ -11,6 +11,9 @@ config/webpack.config.dev.js
 
 ```
 devtool: 'cheap-module-source-map'
+loaders: [
+  { test: /\.scss$/, loader: "style!css!sass" }
+]
 resolve: {
   root: [paths.appSrc]
 }
