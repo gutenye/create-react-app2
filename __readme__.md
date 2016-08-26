@@ -15,3 +15,12 @@ resolve: {
   root: [paths.appSrc]
 }
 ```
+
+config/babel.dev.js
+
+```
+plugins: [
+  require.resolve("babel-plugin-transform-decorators-legacy"),
+  require.resolve("babel-plugin-transform-export-extensions"),
+]
+```
