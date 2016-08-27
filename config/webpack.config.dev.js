@@ -91,6 +91,7 @@ module.exports = {
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
+    /*
     preLoaders: [
       {
         test: /\.js$/,
@@ -98,6 +99,7 @@ module.exports = {
         include: paths.appSrc,
       }
     ],
+   */
     loaders: [
       // Process JS with Babel.
       {

@@ -55,6 +55,7 @@ module.exports = {
     }
   },
 
+  globals: {pd: true, "$": true, "$$": true, "__DEV__": true},
   rules: {
     // http://eslint.org/docs/rules/
     'array-callback-return': 'warn',
@@ -124,12 +125,12 @@ module.exports = {
     'no-sparse-arrays': 'warn',
     'no-this-before-super': 'warn',
     'no-throw-literal': 'off',
-    'no-undef': 'off',
+    'no-undef': 'warn',
     'no-unexpected-multiline': 'warn',
     'no-unreachable': 'warn',
     'no-unused-expressions': 'warn',
     'no-unused-labels': 'warn',
-    'no-unused-vars': ['off', { vars: 'local', args: 'none' }],
+    'no-unused-vars': ['warn', { vars: 'local', args: 'none' }],
     'no-use-before-define': ['warn', 'nofunc'],
     'no-useless-computed-key': 'warn',
     'no-useless-concat': 'warn',
