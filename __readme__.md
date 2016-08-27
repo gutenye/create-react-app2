@@ -1,9 +1,13 @@
 config/eslint.js
 
 ```
-globals: ["pd"]
 rules: {
   'operator-assignment': ['off', 'always']
+  'no-redeclare': 'off'
+  'no-unused-vars': ['off', { vars: 'local', args: 'none' }]
+  'no-undef': 'off',
+  'no-return-assign': 'off'
+  'react/no-direct-mutation-state': 'off',
 }
 ```
 

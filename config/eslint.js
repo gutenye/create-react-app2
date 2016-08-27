@@ -55,8 +55,6 @@ module.exports = {
     }
   },
 
-  globals: {"pd": true},
-
   rules: {
     // http://eslint.org/docs/rules/
     'array-callback-return': 'warn',
@@ -110,14 +108,14 @@ module.exports = {
     'no-obj-calls': 'warn',
     'no-octal': 'warn',
     'no-octal-escape': 'warn',
-    'no-redeclare': 'warn',
+    'no-redeclare': 'off',
     'no-regex-spaces': 'warn',
     'no-restricted-syntax': [
       'warn',
       'LabeledStatement',
       'WithStatement',
     ],
-    'no-return-assign': 'warn',
+    'no-return-assign': 'off',
     'no-script-url': 'warn',
     'no-self-assign': 'warn',
     'no-self-compare': 'warn',
@@ -126,12 +124,12 @@ module.exports = {
     'no-sparse-arrays': 'warn',
     'no-this-before-super': 'warn',
     'no-throw-literal': 'warn',
-    'no-undef': 'warn',
+    'no-undef': 'off',
     'no-unexpected-multiline': 'warn',
     'no-unreachable': 'warn',
     'no-unused-expressions': 'warn',
     'no-unused-labels': 'warn',
-    'no-unused-vars': ['warn', { vars: 'local', args: 'none' }],
+    'no-unused-vars': ['off', { vars: 'local', args: 'none' }],
     'no-use-before-define': ['warn', 'nofunc'],
     'no-useless-computed-key': 'warn',
     'no-useless-concat': 'warn',
@@ -188,7 +186,7 @@ module.exports = {
     'react/jsx-uses-react': 'warn',
     'react/jsx-uses-vars': 'warn',
     'react/no-deprecated': 'warn',
-    'react/no-direct-mutation-state': 'warn',
+    'react/no-direct-mutation-state': 'off',
     'react/no-is-mounted': 'warn',
     'react/react-in-jsx-scope': 'warn',
     'react/require-render-return': 'warn',
