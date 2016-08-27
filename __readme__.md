@@ -7,6 +7,7 @@ rules: {
   'no-unused-vars': ['off', { vars: 'local', args: 'none' }]
   'no-undef': 'off',
   'no-return-assign': 'off'
+  'no-throw-literal': 'off',
   'react/no-direct-mutation-state': 'off',
 }
 ```

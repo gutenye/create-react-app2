@@ -123,7 +123,7 @@ module.exports = {
     'no-shadow-restricted-names': 'warn',
     'no-sparse-arrays': 'warn',
     'no-this-before-super': 'warn',
-    'no-throw-literal': 'warn',
+    'no-throw-literal': 'off',
     'no-undef': 'off',
     'no-unexpected-multiline': 'warn',
     'no-unreachable': 'warn',
