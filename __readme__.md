@@ -29,6 +29,7 @@ module: {
 }
 resolve: {
   root: [paths.appSrc]
+  extensions: ['.web.js', '.js', ...]       // antd-mobile support
 }
 ```
 
@@ -38,5 +39,6 @@ config/babel.dev.js
 plugins: [
   require.resolve("babel-plugin-transform-decorators-legacy"),
   require.resolve("babel-plugin-transform-export-extensions"),
+  [require.resolve('babel-plugin-antd'), {style: 'css', libraryName: 'antd-mobile'}],  // antd-mobile support
 ]
 ```

@@ -85,6 +85,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
+    "babel-plugin-antd": "^0.5.1",
     "bundle-deps": "1.0.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",

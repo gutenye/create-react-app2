@@ -19,6 +19,7 @@ module.exports = {
     require.resolve('babel-preset-react')
   ],
   plugins: [
+    [require.resolve('babel-plugin-antd'), {style: 'css', libraryName: 'antd-mobile'}],
     // @decorator
     require.resolve("babel-plugin-transform-decorators-legacy"),
     // export a from "./a"
