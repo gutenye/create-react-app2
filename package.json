@@ -82,10 +82,10 @@
     "url-loader": "0.5.7",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1",
-    "whatwg-fetch": "1.0.0"
+    "whatwg-fetch": "1.0.0",
+    "babel-plugin-antd": "^0.5.1"
   },
   "devDependencies": {
-    "babel-plugin-antd": "^0.5.1",
     "bundle-deps": "1.0.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
