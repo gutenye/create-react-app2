@@ -33,6 +33,7 @@
     "babel-eslint": "6.1.2",
     "babel-jest": "14.1.0",
     "babel-loader": "6.2.4",
+    "babel-plugin-antd": "^0.5.1",
     "babel-plugin-syntax-async-functions": "6.8.0",
     "babel-plugin-syntax-trailing-function-commas": "6.8.0",
     "babel-plugin-transform-class-properties": "6.11.5",
@@ -73,6 +74,7 @@
     "opn": "4.0.2",
     "path-exists": "3.0.0",
     "postcss-loader": "0.9.1",
+    "postcss-pxtorem": "^3.3.1",
     "promise": "7.1.1",
     "recursive-readdir": "2.0.0",
     "rimraf": "2.5.4",
@@ -82,8 +84,7 @@
     "url-loader": "0.5.7",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1",
-    "whatwg-fetch": "1.0.0",
-    "babel-plugin-antd": "^0.5.1"
+    "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
     "bundle-deps": "1.0.0",

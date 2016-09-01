@@ -15,6 +15,7 @@ var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var WatchMissingNodeModulesPlugin = require('../scripts/utils/WatchMissingNodeModulesPlugin');
 var paths = require('./paths');
 var env = require('./env');
+var pxtorem = require('postcss-pxtorem')
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
@@ -116,8 +117,10 @@ module.exports = {
       {
         test: /\.css$/,
         include: [paths.appSrc, paths.appNodeModules],
+        exclude: /antd-mobile/,
         loader: 'style!css!postcss'
       },
+      { test: /\.css$/, include: /antd-mobile/, loader: 'style!css!postcss?pack=antd'},
       {
         test: /\.scss$/,
         include: [paths.appSrc, paths.appNodeModules],
@@ -180,16 +183,19 @@ module.exports = {
   },
   // We use PostCSS for autoprefixing only.
   postcss: function() {
-    return [
-      autoprefixer({
-        browsers: [
-          '>1%',
-          'last 4 versions',
-          'Firefox ESR',
-          'not ie < 9', // React doesn't support IE8 anyway
-        ]
-      }),
-    ];
+    return {
+      default: [
+        autoprefixer({
+          browsers: [
+            '>1%',
+            'last 4 versions',
+            'Firefox ESR',
+            'not ie < 9', // React doesn't support IE8 anyway
+          ]
+        }),
+      ]
+      antd: [pxtorem({rootValue: 32})],
+    };
   },
   plugins: [
     // Generates an `index.html` file with the <script> injected.
