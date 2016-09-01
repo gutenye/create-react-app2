@@ -118,7 +118,7 @@ module.exports = {
         test: /\.css$/,
         include: [paths.appSrc, paths.appNodeModules],
         exclude: /antd-mobile/,
-        loader: 'style!css!postcss'
+        loader: 'style!css!postcss?pack=default'
       },
       { test: /\.css$/, include: /antd-mobile/, loader: 'style!css!postcss?pack=antd'},
       {
@@ -193,7 +193,7 @@ module.exports = {
             'not ie < 9', // React doesn't support IE8 anyway
           ]
         }),
-      ]
+      ],
       antd: [pxtorem({rootValue: 32})],
     };
   },
