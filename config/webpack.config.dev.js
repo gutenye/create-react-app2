@@ -25,7 +25,7 @@ module.exports = {
   // We don't use source maps here because they can be confusing:
   // https://github.com/facebookincubator/create-react-app/issues/343#issuecomment-237241875
   // You may want 'cheap-module-source-map' instead if you prefer source maps.
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-eval-source-map',
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
@@ -118,9 +118,8 @@ module.exports = {
         test: /\.css$/,
         include: [paths.appSrc, paths.appNodeModules],
         exclude: /antd-mobile/,
-        loader: 'style!css!postcss?pack=default'
+        loader: 'style!css!postcss'
       },
-      { test: /\.css$/, include: /antd-mobile/, loader: 'style!css!postcss?pack=antd'},
       {
         test: /\.scss$/,
         include: [paths.appSrc, paths.appNodeModules],
@@ -183,19 +182,17 @@ module.exports = {
   },
   // We use PostCSS for autoprefixing only.
   postcss: function() {
-    return {
-      default: [
-        autoprefixer({
-          browsers: [
-            '>1%',
-            'last 4 versions',
-            'Firefox ESR',
-            'not ie < 9', // React doesn't support IE8 anyway
-          ]
-        }),
-      ],
-      antd: [pxtorem({rootValue: 32})],
-    };
+    return [
+      autoprefixer({
+        browsers: [
+          '>1%',
+          'last 4 versions',
+          'Firefox ESR',
+          'not ie < 9', // React doesn't support IE8 anyway
+        ]
+      }),
+      pxtorem({rootValue: 100})
+    ];
   },
   plugins: [
     // Generates an `index.html` file with the <script> injected.
