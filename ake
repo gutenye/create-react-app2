@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+./tasks/build.sh
+cd dist
+git add .
+git commit -m 'update'
+git push
