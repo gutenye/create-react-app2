@@ -16,9 +16,15 @@ const paths = require('../config/paths');
 
 const argv = process.argv.slice(2);
 
-const index = argv.indexOf('--debug-template');
-if (index !== -1) {
-  argv.splice(index, 1);
+// Don't pass this option to Jest
+const debugTemplateIndex = argv.indexOf('--debug-template');
+if (debugTemplateIndex !== -1) {
+  argv.splice(debugTemplateIndex, 1);
+}
+
+// Watch unless on CI
+if (!process.env.CI) {
+  argv.push('--watch');
 }
 
 argv.push('--config', JSON.stringify(createJestConfig(

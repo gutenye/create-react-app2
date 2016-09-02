@@ -17,23 +17,18 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
   var ownPath = path.join(appPath, 'node_modules', 'react-scripts');
 
   var appPackage = require(path.join(appPath, 'package.json'));
-  var ownPackage = require(path.join(ownPath, 'package.json'));
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
   appPackage.devDependencies = appPackage.devDependencies || {};
-  ['react', 'react-dom'].forEach(function (key) {
-    appPackage.dependencies[key] = ownPackage.devDependencies[key];
-  });
-  ['react-test-renderer'].forEach(function (key) {
-    appPackage.devDependencies[key] = ownPackage.devDependencies[key];
-  });
 
   // Setup the script rules
-  appPackage.scripts = {};
-  ['start', 'build', 'eject', 'test'].forEach(function(command) {
-    appPackage.scripts[command] = 'react-scripts ' + command;
-  });
+  appPackage.scripts = {
+    'start': 'react-scripts start',
+    'build': 'react-scripts build',
+    'test': 'react-scripts test --env=jsdom',
+    'eject': 'react-scripts eject'
+  };
 
   // explicitly specify ESLint config path for editor plugins
   appPackage.eslintConfig = {
@@ -74,6 +69,9 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
   // TODO: having to do two npm installs is bad, can we avoid it?
   var args = [
     'install',
+    'react',
+    'react-dom',
+    '--save',
     verbose && '--verbose'
   ].filter(function(e) { return e; });
   var proc = spawn('npm', args, {stdio: 'inherit'});
