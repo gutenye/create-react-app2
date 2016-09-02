@@ -40,7 +40,7 @@ clean_path=`mktemp -d clean_XXXX`
 # We will strip the dev-only code there, and then copy files back.
 rsync -av --exclude='.git' --exclude=$clean_path\
   --exclude='node_modules' --exclude='build'\
-  './' '$clean_path'  >/dev/null
+  './' $clean_path  >/dev/null
 
 # Now remove all the code relevant to development of Create React App.
 cd $clean_path
