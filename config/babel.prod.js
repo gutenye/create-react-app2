@@ -47,6 +47,7 @@ module.exports = {
     // TODO: Enable again when these issues are resolved.
     // require.resolve('babel-plugin-transform-react-constant-elements')
     [require.resolve('babel-plugin-antd'), {style: 'css', libraryName: 'antd-mobile'}],
+    require.resolve("babel-plugin-transform-export-extensions"),
     require.resolve("babel-plugin-transform-decorators-legacy"),
   ],
 };

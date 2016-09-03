@@ -43,6 +43,7 @@ module.exports = {
       moduleName: path.dirname(require.resolve('babel-runtime/package'))
     }],
     [require.resolve('babel-plugin-antd'), {style: 'css', libraryName: 'antd-mobile'}],
+    require.resolve("babel-plugin-transform-export-extensions"),
     require.resolve("babel-plugin-transform-decorators-legacy"),
   ]
 };
