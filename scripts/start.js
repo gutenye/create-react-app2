@@ -228,7 +228,8 @@ function addMiddleware(devServer) {
         logLevel: 'silent',
         onError: onProxyError(proxy),
         secure: false,
-        changeOrigin: true
+        changeOrigin: true,
+        ws: true,
       })
     );
   }
