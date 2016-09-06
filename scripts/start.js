@@ -28,6 +28,7 @@ var paths = require('../config/paths');
 var DEFAULT_PORT = process.env.PORT || 3000;
 var compiler;
 var handleCompile;
+var appProxy;
 
 // You can safely remove this after ejecting.
 // We only use this block for testing of Create React App itself:
@@ -220,18 +221,18 @@ function addMiddleware(devServer) {
     // - /sockjs-node/* (WebpackDevServer uses this for hot reloading)
     // Tip: use https://www.debuggex.com/ to visualize the regex
     var mayProxy = /^(?!\/(index\.html$|.*\.hot-update\.json$|sockjs-node\/)).*$/;
-    devServer.use(mayProxy,
       // Pass the scope regex both to Express and to the middleware for proxying
       // of both HTTP and WebSockets to work without false positives.
-      httpProxyMiddleware(pathname => mayProxy.test(pathname), {
+    appProxy = httpProxyMiddleware(pathname => mayProxy.test(pathname), {
         target: proxy,
         logLevel: 'silent',
         onError: onProxyError(proxy),
         secure: false,
         changeOrigin: true,
         ws: true,
-      })
-    );
+      });
+    devServer.use(mayProxy, appProxy);
+    devServer.listeningApp.on('upgrade', appProxy.upgrade)
   }
   // Finally, by now we have certainly resolved the URL.
   // It may be /index.html, so let the dev server try serving it again.
