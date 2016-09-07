@@ -240,6 +240,7 @@ function addMiddleware(devServer) {
 }
 
 function runDevServer(port, protocol) {
+  var proxy2 = require(paths.appPackageJson).proxy2;
   var devServer = new WebpackDevServer(compiler, {
     // By default WebpackDevServer also serves files from the current directory.
     // This might be useful in legacy apps. However we already encourage people
@@ -276,7 +277,12 @@ function runDevServer(port, protocol) {
       ignored: /node_modules/
     },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
-    https: protocol === "https" ? true : false
+    https: protocol === "https" ? true : false,
+    proxy: {
+      [proxy2.path]: Object.assign({
+        ws: true,
+      }, proxy2)
+    },
   });
 
   // Our custom middleware proxies requests to /index.html or a remote API.
