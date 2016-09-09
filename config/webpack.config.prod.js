@@ -17,6 +17,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var url = require('url');
 var paths = require('./paths');
 var env = require('./env');
+var pxtorem = require('postcss-pxtorem')
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
@@ -62,8 +63,17 @@ module.exports = {
     publicPath: publicPath
   },
   resolve: {
+    // This allows you to set a fallback for where Webpack should look for modules.
+    // We read `NODE_PATH` environment variable in `paths.js` and pass paths here.
+    // We use `fallback` instead of `root` because we want `node_modules` to "win"
+    // if there any conflicts. This matches Node resolution mechanism.
+    // https://github.com/facebookincubator/create-react-app/issues/253
+    fallback: paths.nodePaths,
     // These are the reasonable defaults supported by the Node ecosystem.
-    extensions: ['.web.js', '.js', '.json', ''],
+    // We also include JSX as a common component filename extension to support
+    // some tools, although we do not recommend using it, see:
+    // https://github.com/facebookincubator/create-react-app/issues/290
+    extensions: ['.web.js', '.js', '.json', '.jsx', ''],
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -83,7 +93,7 @@ module.exports = {
     // It's important to do this before Babel processes the JS.
     preLoaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'eslint',
         include: paths.appSrc
       }
@@ -91,7 +101,7 @@ module.exports = {
     loaders: [
       // Process JS with Babel.
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
         query: require('./babel.prod')
@@ -118,9 +128,11 @@ module.exports = {
         // Webpack 1.x uses Uglify plugin as a signal to minify *all* the assets
         // including CSS. This is confusing and will be removed in Webpack 2:
         // https://github.com/webpack/webpack/issues/283
-        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss')
+        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss?pack=default'),
+        exclude: /antd-mobile/,
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
+      { test: /\.css$/, include: /antd-mobile/, loader: ExtractTextPlugin.extract('style', 'css!postcss?pack=antd') },
       {
         test: /\.scss$/,
         include: [paths.appSrc, paths.appNodeModules],
@@ -181,16 +193,21 @@ module.exports = {
   },
   // We use PostCSS for autoprefixing only.
   postcss: function() {
-    return [
-      autoprefixer({
-        browsers: [
-          '>1%',
-          'last 4 versions',
-          'Firefox ESR',
-          'not ie < 9', // React doesn't support IE8 anyway
-        ]
-      }),
-    ];
+    return {
+      default: [
+        autoprefixer({
+          browsers: [
+            '>1%',
+            'last 4 versions',
+            'Firefox ESR',
+            'not ie < 9', // React doesn't support IE8 anyway
+          ]
+        }),
+      ],
+      antd: [
+        pxtorem({rootValue: 32, propWhiteList: []}),
+      ]
+    };
   },
   plugins: [
     // Generates an `index.html` file with the <script> injected.
