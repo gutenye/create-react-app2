@@ -25,6 +25,7 @@ module: {
   // preLoaders: [{loader: 'eslint'}}   // disbale it for speed, use editor's lint feature
   loaders: [
    { test: /\.scss$/, loader: "style!css!sass" }
+   { test: /\.m\.scss$/, loader: "style!css?modules!sass" }
   ]
 }
 resolve: {
