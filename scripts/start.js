@@ -240,7 +240,7 @@ function addMiddleware(devServer) {
 }
 
 function runDevServer(port, protocol) {
-  var proxy2 = require(paths.appPackageJson).proxy2 || {path: '/non-exists-123'} ;
+  var proxy2 = require(paths.appPackageJson).proxy2 || {path: '/non-exists-123', target: 'http://localhost:65535'} ;
   var devServer = new WebpackDevServer(compiler, {
     // By default WebpackDevServer also serves files from the current directory.
     // This might be useful in legacy apps. However we already encourage people
