@@ -134,10 +134,16 @@ module.exports = {
       },
       { test: /\.css$/, include: /antd-mobile/, loader: ExtractTextPlugin.extract('style', 'css!postcss?pack=antd') },
       {
-        test: /\.scss$/,
+        test: /^(.m)\.scss$/,
         include: [paths.appSrc, paths.appNodeModules],
         loader: ExtractTextPlugin.extract("style", "css!sass")
       },
+      {
+        test: /\.m\.scss$/,
+        include: [paths.appSrc, paths.appNodeModules],
+        loader: ExtractTextPlugin.extract("style", "css?modules", "sass")
+      },
+
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
       {
