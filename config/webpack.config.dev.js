@@ -127,12 +127,12 @@ module.exports = {
       },
       { test: /\.css$/, include: /antd-mobile/, loader: 'style!css!postcss?pack=antd'},
       {
-        test: /^((?!\.m).)*scss$/,
+        test: /\.m\.scss$/,
         include: [paths.appSrc, paths.appNodeModules],
         loader: "style!css!sass"
       },
       {
-        test: /\.m\.scss$/,
+        test: /^((?!\.m).)*scss$/,
         include: [paths.appSrc, paths.appNodeModules],
         loader: "style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass"
       },
